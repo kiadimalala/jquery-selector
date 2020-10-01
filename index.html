@@ -13,12 +13,12 @@
   <body>
 
     <div class='main h-screen flex flex-col p-20 items-center bg-gray-700  '>
-      <div class='form'>
+      <div class='form m-2'>
         <input class=" p-1 border shadow-md focus:outline-none" type="text">
         <button id="submit" class="bg-gray-200 ml-2 p-1 focus:outline-none">Valider</button>
       </div>
-      <div id="table__container w-full">
-        <table class="table my-10 w-64 border-separate border rounded-lg p-5  ">
+      <div id="table__container">
+        <table class="table w-64 border-separate border rounded-lg p-5  ">
           <thead>
             <th class="p-2">Id</th>
             <th class="p-2">Nom</th>
@@ -74,8 +74,13 @@
 
         if (nom === '') {
           let _err = $('.form')
-          let _errTemplate = '<p class="err text-red-600 text-center m-1">Veuillez saisir un nom</p>'
-          _err.append(_errTemplate)
+          let _errTemplate = '<p class="err text-red-500 text-center m-2">Veuillez saisir un nom</p>'
+          if ($('.err').length === 0) {
+            _err.append(_errTemplate)
+            setTimeout(function(){
+              $('.err').remove()
+            },2000)
+          }
 
         } else {
           let _tbody = $('tbody')
@@ -92,8 +97,8 @@
       //Delete cell lines
       $(document).on('click', '.delete', function () {
         $(this).parents()[1].remove();
+        let _id = $('tbody').children().length - 1
       })
-
     })
   </script>
 
