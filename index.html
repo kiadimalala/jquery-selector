@@ -77,9 +77,9 @@
           let _errTemplate = '<p class="err text-red-500 text-center m-2">Veuillez saisir un nom</p>'
           if ($('.err').length === 0) {
             _err.append(_errTemplate)
-            setTimeout(function(){
+            setTimeout(function () {
               $('.err').remove()
-            },2000)
+            }, 2000)
           }
 
         } else {
@@ -97,7 +97,6 @@
       //Delete cell lines
       $(document).on('click', '.delete', function () {
         $(this).parents()[1].remove();
-        let _id = $('tbody').children().length - 1
       })
     })
   </script>
