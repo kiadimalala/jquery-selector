@@ -92,7 +92,7 @@
           _tbody.append(template);    
 
           $(document).find($('tbody').children('tr')[1]).addClass('bg-green-500')
-          $(document).find($('tbody').children('tr')[2]).find($('td')[0]).addClass('bg-yellow-500')
+          $(document).find($('tbody').children('tr')[2]).find($('td:first-child')).addClass('bg-yellow-400')
           $(document).find($('tbody').children('tr')[3]).find($('td:nth-child(2)')).addClass('bg-blue-600')
 
           $('.err').remove()
