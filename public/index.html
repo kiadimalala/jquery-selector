@@ -1,0 +1,164 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./build/tailwind.css" />
+  </head>
+
+  <body>
+    <div class="main h-screen flex flex-col p-20 items-center bg-gray-700">
+      <div class="form m-2">
+        <input class="p-1 border shadow-md focus:outline-none" type="text" />
+        <button id="submit" class="bg-gray-200 ml-2 p-1 focus:outline-none">
+          Valider
+        </button>
+      </div>
+      <div id="table__container">
+        <table class="table w-64 border-separate border rounded-lg p-5">
+          <thead>
+            <th class="p-2">Id</th>
+            <th class="p-2">Nom</th>
+            <th class="p-2">Action</th>
+          </thead>
+          <tbody class="w-full text-center">
+            <tr class="item-1">
+              <td>1</td>
+              <td>php</td>
+              <td>
+                <button
+                  class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+            <tr class="item-2">
+              <td>2</td>
+              <td>ruby</td>
+              <td>
+                <button
+                  class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+            <tr class="item-3">
+              <td>3</td>
+              <td>java</td>
+              <td>
+                <button
+                  class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+            <tr class="item-4">
+              <td>4</td>
+              <td>.net</td>
+              <td>
+                <button
+                  class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="../js/jquery.js"></script>
+  <script type="text/javascript">
+    window.globalCounter = 1;
+    let id = $(document)
+      .find($("tbody").children())
+      .each(function () {
+        $(this)
+          .children()
+          .first()
+          .html(window.globalCounter++);
+      });
+
+    $(document).ready(function () {
+      //Set tbody background color to red
+      $("tbody").addClass("bg-red-600");
+
+      //Set ruby cell line background to green
+      $(".item-2").children().addClass("bg-green-500");
+
+      //Set td 4 id background to yellow
+      $(".item-3").children().first().addClass("bg-yellow-400");
+
+      //Set the background of nom .net to blue
+      $(".item-4").find($(".item-4").children("td")[1]).addClass("bg-blue-600");
+
+      //Add input value to the table on click
+      $("#submit").click(function () {
+        let nom = $("input").val();
+
+        if (nom === "") {
+          let _err = $(".form");
+          let _errTemplate =
+            '<p class="err text-red-500 text-center m-2">Veuillez saisir un nom</p>';
+          if ($(".err").length === 0) {
+            _err.append(_errTemplate);
+
+            //Remove err message after delay
+            setTimeout(function () {
+              $(".err").remove();
+            }, 2000);
+          }
+        } else {
+          let _tbody = $("tbody");
+          let template =
+            '<tr class=" item-' +
+            window.globalCounter +
+            '  " ><td> ' +
+            window.globalCounter +
+            " </td><td>" +
+            nom +
+            '</td><td><button id="delete" class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2">Supprimer</button></td></tr>';
+          _tbody.append(template);
+          window.globalCounter++;
+
+          //Appy bg-color on add
+          $(document)
+            .find($("tbody").children("tr")[1])
+            .addClass("bg-green-500");
+          $(document)
+            .find($("tbody").children("tr")[2])
+            .find($("td:first-child"))
+            .addClass("bg-yellow-400");
+          $(document)
+            .find($("tbody").children("tr")[3])
+            .find($("td:nth-child(2)"))
+            .addClass("bg-blue-600");
+
+          //reset input value after adding new value
+
+          $("input").val(null);
+        }
+      });
+
+      //Delete cell lines
+      $(document).on("click", ".delete", function () {
+        $(this).parents()[1].remove();
+        window.globalCounter--;
+
+        $("tbody")
+          .find("tr")
+          .each(function (index) {
+            var firstTDDomEl = $(this).find("td")[0];
+            var $firstTDJQObject = $(firstTDDomEl);
+            $firstTDJQObject.text(index + 1);
+          });
+      });
+    });
+  </script>
+  
+</html>
