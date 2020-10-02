@@ -55,6 +55,7 @@
   <script src="../js/jquery.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
+
       //Set tbody background color to red
       $('tbody').addClass('bg-red-600')
 
@@ -87,16 +88,25 @@
           let _id = $('tbody').children().length + 1
           let template = '<tr class=" item-' + _id + '  " ><td> ' + _id + ' </td><td>' + nom +
             '</td><td><button id="delete" class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2">Supprimer</button></td></tr>'
-          _tbody.append(template);
+          
+          _tbody.append(template);    
+
+          $(document).find($('tbody').children('tr')[1]).addClass('bg-green-500')
+          $(document).find($('tbody').children('tr')[2]).find($('td')[0]).addClass('bg-yellow-500')
+          $(document).find($('tbody').children('tr')[3]).find($('td:nth-child(2)')).addClass('bg-blue-600')
+
           $('.err').remove()
           $('input').val(null)
         }
-
       })
 
       //Delete cell lines
       $(document).on('click', '.delete', function () {
         $(this).parents()[1].remove();
+
+
+
+
       })
     })
   </script>
