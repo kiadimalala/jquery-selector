@@ -1,10 +1,18 @@
-export default LANG = [
+export  const LANG = [
     {
-        id:1,
+        
         name:'php'
     },
     {
-        id:1,
+    
+        name:'ruby'
+    },
+    {
+    
+        name:'ruby'
+    },
+    {
+    
         name:'ruby'
     }
 ]

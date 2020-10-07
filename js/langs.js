@@ -1,6 +1,7 @@
-import {LANG} from '../mock-language.js'
+class Lang {
 
-export default class Lang{
-        
+    name
 }
-
+export {
+    Lang
+}
