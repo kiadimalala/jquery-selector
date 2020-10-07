@@ -43,7 +43,6 @@ export function addLang(name) {
                 .find($("td:nth-child(2)"))
                 .addClass("bg-blue-600");
 
-
             $('input').val(null)
             addCounter();
         }
