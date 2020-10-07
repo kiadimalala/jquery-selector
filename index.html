@@ -32,50 +32,5 @@
 </body>
 <script src="./js/jquery.js"></script>
 <script type="module" src="./main.js"></script>
-<script type="text/javascript">
- 
-  $(document).ready(function () {
-    //Set tbody background color to red
-    $("tbody").addClass("bg-red-600");
-
-    //Set ruby cell line background to green
-    $(".item-2").children().addClass("bg-green-500");
-
-    //Set td 4 id background to yellow
-    $(".item-3").children().first().addClass("bg-yellow-400");
-
-    //Set the background of nom .net to blue
-    $(".item-4").find($(".item-4").children("td")[1]).addClass("bg-blue-600");
-
-    //     //Appy bg-color on add
-    //     $(document)
-    //       .find($("tbody").children("tr")[1])
-    //       .addClass("bg-green-500");
-    //     $(document)
-    //       .find($("tbody").children("tr")[2])
-    //       .find($("td:first-child"))
-    //       .addClass("bg-yellow-400");
-    //     $(document)
-    //       .find($("tbody").children("tr")[3])
-    //       .find($("td:nth-child(2)"))
-    //       .addClass("bg-blue-600");
-
-   
-
-    //Delete cell lines
-    $(document).on("click", ".delete", function () {
-      $(this).parents()[1].remove();
-      window.globalCounter--;
-
-      $("tbody")
-        .find("tr")
-        .each(function (index) {
-          var firstTDDomEl = $(this).find("td")[0];
-          var $firstTDJQObject = $(firstTDDomEl);
-          $firstTDJQObject.text(index + 1);
-        });
-    });
-  });
-</script>
 
 </html>

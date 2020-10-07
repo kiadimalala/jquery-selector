@@ -1,25 +1,9 @@
 import {
-    LANG
-} from './mock-language.js'
-let counter = 1
-export function setLang() {
+    counter,
+    addCounter
+} from './setLang.js'
 
-    LANG.forEach(lang => {
-        let template = `<tr class='item-${counter}'>
-            <td> ${counter++} </td>
-            <td> ${lang.name} </td>
-            <td> 
-                <button class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2">
-                    Supprimer
-                </button>
-            </td>
-        </tr>`
-        $('tbody').append(template)
-    })
-
-}
-
-export function AddLang(name) {
+export function addLang(name) {
     $('#submit').click(function () {
         name = $('input').val()
         if (name === "") {
@@ -35,9 +19,6 @@ export function AddLang(name) {
                 }, 2000);
             }
         } else {
-            LANG.push({
-                name
-            })
             let _tbody = $("tbody");
             let template =
                 '<tr class=" item-' +
@@ -48,8 +29,23 @@ export function AddLang(name) {
                 name +
                 '</td><td><button id="delete" class="delete bg-gray-200 ml-2 p-1 focus:outline-none text-xs m-2">Supprimer</button></td></tr>';
             _tbody.append(template);
+
+            //     //Appy bg-color on add
+            $(document)
+                .find($("tbody").children("tr")[1])
+                .addClass("bg-green-500");
+            $(document)
+                .find($("tbody").children("tr")[2])
+                .find($("td:first-child"))
+                .addClass("bg-yellow-400");
+            $(document)
+                .find($("tbody").children("tr")[3])
+                .find($("td:nth-child(2)"))
+                .addClass("bg-blue-600");
+
+
             $('input').val(null)
-            counter++;
+            addCounter();
         }
     })
 }
