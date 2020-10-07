@@ -9,10 +9,10 @@ export  const LANG = [
     },
     {
     
-        name:'ruby'
+        name:'java'
     },
     {
     
-        name:'ruby'
+        name:'.net'
     }
 ]

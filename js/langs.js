@@ -1,5 +1,4 @@
 class Lang {
-
     name
 }
 export {
